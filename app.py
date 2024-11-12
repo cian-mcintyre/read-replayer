@@ -52,7 +52,7 @@ if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
 
 # Streamlit App Layout
-st.title("Election Helper")
+st.title("🗳️ Election Helper 🗳️")
 
 def submit():
     user_input = st.session_state.query
@@ -64,7 +64,7 @@ def submit():
         st.session_state.chat_history.append(("Assistant", result))
 
 # Input field
-st.text_input("Ask me anything about the elections:", key='query', on_change=submit)
+st.text_input("Ask me anything about the upcoming elections. I can search through all the main party manifestos and compare them.", key='query', on_change=submit)
 
 # Display chat history
 for sender, message in st.session_state.chat_history:
