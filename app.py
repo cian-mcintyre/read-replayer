@@ -70,21 +70,27 @@ st.markdown(
     }
     /* User messages */
     .user-message {
-        background-color: #DCF8C6;
+        background-color: #DCF8C6; /* Light green */
+        color: #000000;            /* Black text color */
         padding: 10px;
         border-radius: 10px;
         text-align: right;
         margin-bottom: 10px;
-        margin-left: 30%;
+        margin-left: auto;         /* Adjusted */
+        margin-right: 20px;        /* Adjusted */
+        max-width: 60%;            /* Added */
     }
     /* Assistant messages */
     .assistant-message {
-        background-color: #F1F0F0;
+        background-color: #F1F0F0; /* Light gray */
+        color: #000000;            /* Black text color */
         padding: 10px;
         border-radius: 10px;
         text-align: left;
         margin-bottom: 10px;
-        margin-right: 30%;
+        margin-left: 20px;         /* Adjusted */
+        margin-right: auto;        /* Adjusted */
+        max-width: 60%;            /* Added */
     }
     /* Message text */
     .message-text {
@@ -104,7 +110,8 @@ with st.sidebar:
     st.header("ℹ️ About")
     st.write("This app helps you learn about upcoming elections.")
     st.write("You can ask questions about party manifestos and compare policies.")
-    st.write("Feel free to ask any questions!")
+    st.write("The parties included are Social Democrats, Fianna Fail, Fianna Gael, Labour, People Before Profit, Green Party, Independent Ireland, Aontu and Sinn Fein")
+    st.write("You can ask things like 'Compare all housing policies', or describe yourself, your working and living arrangements and your beliefs, and ask which party is most suited to you.")
 
     # Add a reset button
     if st.button("🔄 Reset Conversation"):
