@@ -2,6 +2,14 @@ import streamlit as st
 import time
 from openai import OpenAI
 
+# Set page configuration
+st.set_page_config(
+    page_title="Election Helper",
+    page_icon="🗳️",
+    layout="wide",
+    initial_sidebar_state="collapsed",
+)
+
 api_key = st.secrets["openai_apikey"]
 assistant_id = st.secrets["assistant_id"]
 
@@ -46,16 +54,65 @@ def get_assistant_response(user_input=""):
     return messages.data[0].content[0].text.value
 
 # Initialize session state variables
-if 'user_input' not in st.session_state:
-    st.session_state.user_input = ''
+if 'query' not in st.session_state:
+    st.session_state.query = ''
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
+
+# Add custom CSS for styling messages
+st.markdown(
+    """
+    <style>
+    /* Main container */
+    .chat-container {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    /* User messages */
+    .user-message {
+        background-color: #DCF8C6;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: right;
+        margin-bottom: 10px;
+        margin-left: 30%;
+    }
+    /* Assistant messages */
+    .assistant-message {
+        background-color: #F1F0F0;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: left;
+        margin-bottom: 10px;
+        margin-right: 30%;
+    }
+    /* Message text */
+    .message-text {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Streamlit App Layout
 st.title("🗳️ Election Helper 🗳️")
 
+# Sidebar
+with st.sidebar:
+    st.header("ℹ️ About")
+    st.write("This app helps you learn about upcoming elections.")
+    st.write("You can ask questions about party manifestos and compare policies.")
+    st.write("Feel free to ask any questions!")
+
+    # Add a reset button
+    if st.button("🔄 Reset Conversation"):
+        st.session_state.chat_history = []
+        st.experimental_rerun()
+
 def submit():
-    user_input = st.session_state.query
+    user_input = st.session_state.query.strip()
     st.session_state.query = ''
 
     if user_input:
@@ -64,11 +121,22 @@ def submit():
         st.session_state.chat_history.append(("Assistant", result))
 
 # Input field
-st.text_input("Ask me anything about the upcoming elections. I can search through all the main party manifestos and compare them.", key='query', on_change=submit)
+st.text_input(
+    "Ask me anything about the upcoming elections. I can search through all the main party manifestos and compare them.",
+    key='query',
+    on_change=submit
+)
 
 # Display chat history
-for sender, message in st.session_state.chat_history:
-    if sender == "You":
-        st.write(f"**You:** {message}")
-    else:
-        st.write(f"**Assistant:** {message}")
+with st.container():
+    for sender, message in st.session_state.chat_history:
+        if sender == "You":
+            st.markdown(
+                f"<div class='user-message'><div class='message-text'>{message}</div></div>",
+                unsafe_allow_html=True
+            )
+        else:
+            st.markdown(
+                f"<div class='assistant-message'><div class='message-text'>{message}</div></div>",
+                unsafe_allow_html=True
+            )
