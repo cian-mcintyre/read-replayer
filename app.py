@@ -4,8 +4,8 @@ from openai import OpenAI
 
 # Set page configuration
 st.set_page_config(
-    page_title="Election Helper",
-    page_icon="🗳️",
+    page_title="Read Replayer",
+    page_icon="📘",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -108,10 +108,10 @@ st.title("🗳️ Election Helper 🗳️")
 # Sidebar
 with st.sidebar:
     st.header("ℹ️ About")
-    st.write("This app helps you learn about upcoming elections.")
-    st.write("You can ask questions about party manifestos and compare policies.")
-    st.write("The parties included are Social Democrats, Fianna Fail, Fianna Gael, Labour, People Before Profit, Green Party, Independent Ireland, Aontu and Sinn Fein")
-    st.write("You can ask things like 'Compare all housing policies', or describe yourself, your working and living arrangements and your beliefs, and ask which party is most suited to you.")
+    st.write("This app helps you get spoiler-free book updates")
+    st.write("You can ask questions about characters, chapters or plot summaries.")
+    st.write("Tell me where you are in the book and I can give you a synopsis of what has happened so far. ")
+    st.write("You can ask things like 'Who is X', or 'Why is X doing Y'")
 
     # Add a reset button
     if st.button("🔄 Reset Conversation"):
