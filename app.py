@@ -103,7 +103,7 @@ st.markdown(
 )
 
 # Streamlit App Layout
-st.title("🗳️ Election Helper 🗳️")
+st.title("📘 Read Replayer 📘")
 
 # Sidebar
 with st.sidebar:
