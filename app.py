@@ -107,7 +107,7 @@ st.title("📘 Read Replayer 📘")
 
 # Sidebar
 with st.sidebar:
-    st.header("ℹ️ About")
+    st.header("ℹ️ About this app")
     st.write("This app helps you get spoiler-free book updates")
     st.write("You can ask questions about characters, chapters or plot summaries.")
     st.write("Tell me where you are in the book and I can give you a synopsis of what has happened so far. ")
