@@ -129,7 +129,7 @@ def submit():
 
 # Input field
 st.text_input(
-    "Ask me anything about the upcoming elections. I can search through all the main party manifestos and compare them.",
+    "Ask me anything about the book you are reading. I can help you recount characters or plot lines from books.",
     key='query',
     on_change=submit
 )
